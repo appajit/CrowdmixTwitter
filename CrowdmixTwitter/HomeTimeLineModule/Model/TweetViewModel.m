@@ -11,6 +11,8 @@
 #import "CrowdmixTweetUser.h"
 #import "UIImage+Utils.h"
 #import "NSDateFormatter+Twitter.h"
+#import "CrowdmixTweetEntities.h"
+#import "CrowdmixTweetHashTag.h"
 
 static NSUInteger const kRoundedCornerSize = 5;
 
@@ -23,7 +25,9 @@ static NSUInteger const kRoundedCornerSize = 5;
     /* By default the profile image is set with placeholder image untill it is downloaded. */
     UIImage *profileImage   = [UIImage imageNamed:@"loading_image"];
     viewModel.profileImage  = [profileImage imageWithRoundedCornersSize:kRoundedCornerSize];
-    viewModel.tweetText     = crowdmixTweet.text;
+    
+    /* apply hash tags to the tweet text by chaning the hash tag text color */
+    viewModel.tweetText     = [self tweetTextWithHashTagsIfAny:crowdmixTweet];
     viewModel.name          = crowdmixTweet.tweetUser.name;
     
     /* prepare the tweet age from the created date */
@@ -35,6 +39,30 @@ static NSUInteger const kRoundedCornerSize = 5;
     
     return viewModel;
 }
+
++(NSAttributedString*) tweetTextWithHashTagsIfAny:(CrowdmixTweet*) tweet
+{
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:tweet.text];
+    for (CrowdmixTweetHashTag *hashTag in tweet.entities.hashTags)
+    {
+        NSInteger indices0 = ((NSNumber*)hashTag.indices[0]).integerValue;
+        NSInteger indices1 = ((NSNumber*)hashTag.indices[1]).integerValue;
+        
+        NSInteger location  = indices0;
+        NSUInteger length  = indices1-indices0;
+        
+         NSRange range = NSMakeRange(location,length);
+        if (range.location != NSNotFound)
+        {
+            [attributedString addAttribute:NSForegroundColorAttributeName
+                                     value:[UIColor blueColor]
+                                     range:range];
+        }
+    }
+    
+    return attributedString;
+}
+
 
 +(NSString*) tweetAgeFromDateString:(NSString*) dateString
 {

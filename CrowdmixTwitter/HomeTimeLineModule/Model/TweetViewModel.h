@@ -24,7 +24,7 @@
 /* prepares the tweet age from the current data and tweet created data */
 @property (copy, nonatomic)    NSString *tweetAge;
 /* tweet text */
-@property (copy, nonatomic)    NSString *tweetText;
+@property (copy, nonatomic)    NSAttributedString *tweetText;
 /* tweet id */
 @property (copy,nonatomic)     NSNumber *tweetId;
 /* flag to know whether the profile image is downloaded from the image URL or not */

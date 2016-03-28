@@ -9,11 +9,12 @@
 #import <Mantle/Mantle.h>
 
 @class CrowdmixTweetUser;
+@class CrowdmixTweetEntities;
 
 @interface CrowdmixTweet : MTLModel <MTLJSONSerializing>
 
 
-@property (nonatomic,readonly) NSNumber *tweetId;
+@property (nonatomic,copy,readonly) NSNumber *tweetId;
 /**
  *  tweet text
  */
@@ -29,5 +30,7 @@
  */
 @property (nonatomic,copy,readonly) CrowdmixTweetUser *tweetUser;
 
+
+@property (nonatomic,copy,readonly) CrowdmixTweetEntities *entities;
 
 @end

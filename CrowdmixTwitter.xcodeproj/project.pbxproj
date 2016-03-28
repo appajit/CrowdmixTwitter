@@ -39,6 +39,9 @@
 		CBD95C751CA99C8400FB3AF7 /* HomeTimeLinePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD95C6C1CA99C8400FB3AF7 /* HomeTimeLinePresenter.m */; };
 		CBD95C761CA99C8400FB3AF7 /* HomeTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD95C6F1CA99C8400FB3AF7 /* HomeTimeLineViewController.m */; };
 		CBD95C771CA99C8400FB3AF7 /* HomeTimeLineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD95C721CA99C8400FB3AF7 /* HomeTimeLineTableViewCell.m */; };
+		CBD95C7A1CA9BB7600FB3AF7 /* CrowdmixTweetEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD95C791CA9BB7600FB3AF7 /* CrowdmixTweetEntities.m */; };
+		CBD95C7D1CA9BC9C00FB3AF7 /* CrowdmixTweetHashTag.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD95C7C1CA9BC9C00FB3AF7 /* CrowdmixTweetHashTag.m */; };
+		CBE2082F1CA9CF23000BB6B5 /* TweetViewModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE2082E1CA9CF23000BB6B5 /* TweetViewModelTests.m */; };
 		DD8111EF5287BFF9A29A12E5 /* libPods-CrowdmixTwitterUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9749B897F690F33A52A70A /* libPods-CrowdmixTwitterUITests.a */; };
 		DE69B15383D5EA78657EA3BC /* libPods-CrowdmixTwitterTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07AA8109D37D95143710E1B3 /* libPods-CrowdmixTwitterTests.a */; };
 		F2B4D933B2B3A01805D802F6 /* libPods-CrowdmixTwitter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB02BB622519F07CDF4FF83 /* libPods-CrowdmixTwitter.a */; };
@@ -127,6 +130,11 @@
 		CBD95C6F1CA99C8400FB3AF7 /* HomeTimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTimeLineViewController.m; sourceTree = "<group>"; };
 		CBD95C711CA99C8400FB3AF7 /* HomeTimeLineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTimeLineTableViewCell.h; sourceTree = "<group>"; };
 		CBD95C721CA99C8400FB3AF7 /* HomeTimeLineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTimeLineTableViewCell.m; sourceTree = "<group>"; };
+		CBD95C781CA9BB7600FB3AF7 /* CrowdmixTweetEntities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrowdmixTweetEntities.h; sourceTree = "<group>"; };
+		CBD95C791CA9BB7600FB3AF7 /* CrowdmixTweetEntities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrowdmixTweetEntities.m; sourceTree = "<group>"; };
+		CBD95C7B1CA9BC9C00FB3AF7 /* CrowdmixTweetHashTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrowdmixTweetHashTag.h; sourceTree = "<group>"; };
+		CBD95C7C1CA9BC9C00FB3AF7 /* CrowdmixTweetHashTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrowdmixTweetHashTag.m; sourceTree = "<group>"; };
+		CBE2082E1CA9CF23000BB6B5 /* TweetViewModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetViewModelTests.m; sourceTree = "<group>"; };
 		DD494A0536EC65FFB59D4767 /* Pods-CrowdmixTwitterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdmixTwitterTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrowdmixTwitterTests/Pods-CrowdmixTwitterTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -228,6 +236,7 @@
 				CBD95C031CA877EB00FB3AF7 /* ProfileImageDownloaderTests.m */,
 				CBD95C101CA88CD800FB3AF7 /* HomeTimeLineViewControllerTests.m */,
 				CBD95C5C1CA97BB100FB3AF7 /* HomeTimeLinePresenterTests.m */,
+				CBE2082E1CA9CF23000BB6B5 /* TweetViewModelTests.m */,
 				CBD95C051CA87A5300FB3AF7 /* tweet_profile_image.png */,
 				CBD95BEA1CA85A7A00FB3AF7 /* test_hometimeline.json */,
 			);
@@ -284,6 +293,10 @@
 		CBD95C1C1CA8A6F900FB3AF7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CBD95C781CA9BB7600FB3AF7 /* CrowdmixTweetEntities.h */,
+				CBD95C791CA9BB7600FB3AF7 /* CrowdmixTweetEntities.m */,
+				CBD95C7B1CA9BC9C00FB3AF7 /* CrowdmixTweetHashTag.h */,
+				CBD95C7C1CA9BC9C00FB3AF7 /* CrowdmixTweetHashTag.m */,
 				CBD95C1D1CA8A6F900FB3AF7 /* CrowdmixTweet.h */,
 				CBD95C1E1CA8A6F900FB3AF7 /* CrowdmixTweet.m */,
 				CBD95C1F1CA8A6F900FB3AF7 /* CrowdmixTweetUser.h */,
@@ -707,6 +720,8 @@
 				CBD95C181CA8A6E800FB3AF7 /* AppDelegate.m in Sources */,
 				CBD95C771CA99C8400FB3AF7 /* HomeTimeLineTableViewCell.m in Sources */,
 				CB0D2E4C1CA6B97000304C1D /* main.m in Sources */,
+				CBD95C7A1CA9BB7600FB3AF7 /* CrowdmixTweetEntities.m in Sources */,
+				CBD95C7D1CA9BC9C00FB3AF7 /* CrowdmixTweetHashTag.m in Sources */,
 				CBD95C4F1CA8A7D700FB3AF7 /* NSURLSession+Cacheable.m in Sources */,
 				CBD95C751CA99C8400FB3AF7 /* HomeTimeLinePresenter.m in Sources */,
 				CBD95C501CA8A7D700FB3AF7 /* UIImage+Utils.m in Sources */,
@@ -721,6 +736,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBE2082F1CA9CF23000BB6B5 /* TweetViewModelTests.m in Sources */,
 				CBD95BE91CA852A500FB3AF7 /* CrowdmixTwitterTests.m in Sources */,
 				CBD95C041CA877EB00FB3AF7 /* ProfileImageDownloaderTests.m in Sources */,
 				CBD95C111CA88CD800FB3AF7 /* HomeTimeLineViewControllerTests.m in Sources */,

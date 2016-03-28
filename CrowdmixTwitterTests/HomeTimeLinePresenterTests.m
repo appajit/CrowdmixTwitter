@@ -104,7 +104,7 @@
     XCTAssertTrue(timeLineTweetViewModels.count == 2,@"number of tweet view models should be 2");
     XCTAssertTrue([tweetViewModel.name isEqualToString:@"user1"],@"incorrect tweet user name");
     XCTAssertTrue([tweetViewModel.screenName isEqualToString:@"@user1_screename"],@"incorrect tweet user screen name");
-    XCTAssertTrue([tweetViewModel.tweetText isEqualToString:@"user1_tweet_text"],@"incorrect tweet text");
+    XCTAssertTrue([tweetViewModel.tweetText.string isEqualToString:@"user1_tweet_text"],@"incorrect tweet text");
     XCTAssertTrue([tweetViewModel.tweetAge isEqualToString:@"15m"],@"incorrect tweet text");
     XCTAssertTrue([tweetViewModel1.name isEqualToString:@"user2"],@"incorrect tweet user name");
     

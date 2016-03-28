@@ -39,7 +39,7 @@ static NSString * const kCellIdentifier = @"HomeTimeLineTableViewCell";
 -(void) configureWithTweetViewModel:(TweetViewModel*) tweetViewModel
 {
     self.profileImageView.image = tweetViewModel.profileImage;
-    self.tweetTextLabel.text    = tweetViewModel.tweetText;
+    self.tweetTextLabel.attributedText    = tweetViewModel.tweetText;
     self.nameLabel.text         = tweetViewModel.name;
     self.tweetAgeLabel.text     = tweetViewModel.tweetAge;
     self.screenNameLabel.text   = tweetViewModel.screenName;

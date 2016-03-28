@@ -98,13 +98,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4PK-Gc-vGM">
-                                            <rect key="frame" x="544.5" y="13" width="37.5" height="18"/>
+                                            <rect key="frame" x="544" y="13" width="37.5" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfO-Ue-PTe">
-                                            <rect key="frame" x="78" y="38.5" width="504" height="18"/>
+                                            <rect key="frame" x="78" y="38" width="504" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -115,7 +115,8 @@
                                         <constraint firstItem="hfO-Ue-PTe" firstAttribute="leading" secondItem="i8S-gG-z0I" secondAttribute="leading" id="7Ps-ok-Dhi"/>
                                         <constraint firstItem="4PK-Gc-vGM" firstAttribute="top" secondItem="PfX-eH-yP9" secondAttribute="top" id="FWF-1x-aQE"/>
                                         <constraint firstItem="hfO-Ue-PTe" firstAttribute="trailing" secondItem="4PK-Gc-vGM" secondAttribute="trailing" id="Hjs-94-A9Q"/>
-                                        <constraint firstItem="hfO-Ue-PTe" firstAttribute="trailing" secondItem="dIY-BL-c5u" secondAttribute="trailingMargin" constant="5" id="M7V-G1-dKx"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="hfO-Ue-PTe" secondAttribute="bottom" constant="5" id="It1-kP-Eyi"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="hfO-Ue-PTe" secondAttribute="bottom" constant="5" id="OWv-nH-2Xm"/>
                                         <constraint firstItem="PfX-eH-yP9" firstAttribute="top" secondItem="i8S-gG-z0I" secondAttribute="top" id="aQ1-Bd-V15"/>
                                         <constraint firstItem="PfX-eH-yP9" firstAttribute="leading" secondItem="i8S-gG-z0I" secondAttribute="trailing" constant="5" id="ego-P8-8jv"/>
                                         <constraint firstItem="cUS-E4-y5w" firstAttribute="top" secondItem="dIY-BL-c5u" secondAttribute="topMargin" constant="5" id="h6J-8x-QTD"/>
@@ -126,7 +127,7 @@
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
-                                            <exclude reference="M7V-G1-dKx"/>
+                                            <exclude reference="It1-kP-Eyi"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>

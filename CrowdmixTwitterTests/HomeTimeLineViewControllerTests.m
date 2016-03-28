@@ -88,12 +88,12 @@
         TweetViewModel* viewModel1 = [TweetViewModel new];
         viewModel1.name = @"user1";
         viewModel1.screenName = @"@user1_screen_name";
-        viewModel1.tweetText = @"user1_tweet_text";
+        viewModel1.tweetText = [[NSAttributedString alloc] initWithString:@"user1_tweet_text"];
         
         TweetViewModel* viewModel2 = [TweetViewModel new];
         viewModel2.name = @"user2";
         viewModel2.screenName = @"@user2_screen_name";
-        viewModel2.tweetText = @"user2_tweet_text";
+        viewModel2.tweetText = [[NSAttributedString alloc] initWithString:@"user2_tweet_text"];;
         
         NSArray *tweetViewModels = @[viewModel1,viewModel2];
         passedBlock(tweetViewModels, nil);
