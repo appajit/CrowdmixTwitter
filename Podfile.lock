@@ -1,0 +1,24 @@
+PODS:
+  - Fabric (1.6.7)
+  - Mantle (2.0.6):
+    - Mantle/extobjc (= 2.0.6)
+  - Mantle/extobjc (2.0.6)
+  - OCMock (3.2.2)
+  - TwitterCore (2.0.1):
+    - Fabric
+  - TwitterKit (2.0.1):
+    - TwitterCore (= 2.0.1)
+
+DEPENDENCIES:
+  - Mantle
+  - OCMock
+  - TwitterKit
+
+SPEC CHECKSUMS:
+  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
+  Mantle: 299966b00759634931699f69cb6a30b9239b944d
+  OCMock: 18c9b7e67d4c2770e95bb77a9cc1ae0c91fe3835
+  TwitterCore: f8575c28412ab2e3fed1a153764397771de06efb
+  TwitterKit: ebc84244d4ada8cc673afd4ae7b67277e1f05a65
+
+COCOAPODS: 0.39.0
