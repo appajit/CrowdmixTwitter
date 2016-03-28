@@ -45,7 +45,7 @@
                                                  @"profile_image_url_https": @"user1_screename.png"},
                                          @"entities": @{
                                              @"hashtags": @[
-                                                     @{@"text" : @"hashTagText",
+                                                     @{@"text" : @"#hashTagText",
                                                        @"indices" : @[@6,@17]}]}
                                          };
     
@@ -55,8 +55,13 @@
                                                   error:&error];
     
     TweetViewModel *viewModel = [TweetViewModel viewModelFromCrowdmixTweet:tweet];
+    NSRange range =NSMakeRange(0,17);
+    NSDictionary* attributes =  [viewModel.tweetText attributesAtIndex:6 effectiveRange:&range];
+    
+    XCTAssertTrue([attributes[NSForegroundColorAttributeName] isEqual:[UIColor blueColor]],@"hash tag is not set");
+    XCTAssertTrue([viewModel.name isEqualToString:@"user1"],@"name is incorrect");
+    XCTAssertTrue([viewModel.screenName isEqualToString:@"@user1_screename"],@"screen name is incorrect");
+    XCTAssertTrue([viewModel.tweetText.string isEqualToString:@"user1_#hashTagText"],@"tweet text is incorrect");
 }
-
-
 
 @end
