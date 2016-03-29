@@ -5,8 +5,8 @@
 
     a.  App registration URL: https://apps.twitter.com.
 
-2)  Mainly focused on implementing right architecture and design
-    patterns and performance of the App.
+2)  Main focus on implementing right architecture, design patterns and
+    performance of the App.
 
 3)  Implemented UI modules using storyboards and auto layouts.
 
