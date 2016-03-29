@@ -10,6 +10,7 @@
 
 @interface CrowdmixTweetEntities : MTLModel <MTLJSONSerializing>
 
+/* hash tag items */
 @property (nonatomic,strong,readonly) NSArray *hashTags;
 
 @end

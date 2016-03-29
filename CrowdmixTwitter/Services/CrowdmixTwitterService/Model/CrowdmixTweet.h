@@ -31,6 +31,9 @@
 @property (nonatomic,copy,readonly) CrowdmixTweetUser *tweetUser;
 
 
+/**
+ *  tweet entities such as hash tags etc.
+ */
 @property (nonatomic,copy,readonly) CrowdmixTweetEntities *entities;
 
 @end

@@ -105,7 +105,20 @@
 
 -(void) composeTweet
 {
-    [self.presenter composeTweetFromViewController:self withCompletionHandler:nil];
+    __weak HomeTimeLineViewController *weakSelf = self;
+    [self.presenter composeTweetFromViewController:self withCompletionHandler:^
+    {
+        /* as posting of tweet to server takes times, refresh the time line after 5 secs to make
+         * sure that tweet has been sent to server
+         */
+        HomeTimeLineViewController *strongSelf = weakSelf;
+        if(strongSelf)
+        {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [strongSelf fetchHomeTimeLine];
+            });
+         }
+    }];
 }
 
 

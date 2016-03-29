@@ -10,7 +10,10 @@
 
 @interface CrowdmixTweetHashTag : MTLModel <MTLJSONSerializing>
 
+/* hash tag text */
 @property (nonatomic,copy,readonly) NSString *text;
+
+/* indices of hash tag in the tweet text */
 @property (nonatomic,copy,readonly) NSArray *indices;
 
 @end
