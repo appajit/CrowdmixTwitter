@@ -36,7 +36,7 @@ static NSUInteger const kMaxTweets = 20;
     self = [super init];
     if(self)
     {
-        self.twitterKitAPI = twitterKitAPI;
+        _twitterKitAPI = twitterKitAPI;
         [self.twitterKitAPI.twitter startWithConsumerKey:kConsumerKey
                                           consumerSecret:kConsumerSecret];
     }

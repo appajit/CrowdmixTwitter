@@ -60,7 +60,7 @@
                  [tweets enumerateObjectsUsingBlock:^(CrowdmixTweet * _Nonnull tweet, NSUInteger idx, BOOL * _Nonnull stop)
                  {
                      TweetViewModel *viewModel = [TweetViewModel viewModelFromCrowdmixTweet:tweet];
-                     self.tweetsDictionary[tweet.tweetId] = tweet;
+                     strongSelf.tweetsDictionary[tweet.tweetId] = tweet;
                      [viewModelsArray addObject:viewModel];
                  }];
              }

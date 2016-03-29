@@ -178,7 +178,7 @@
          HomeTimeLineViewController *strongSelf = weakSelf;
          if(strongSelf)
          {
-             HomeTimeLineTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+             HomeTimeLineTableViewCell *cell = [strongSelf.tableView cellForRowAtIndexPath:indexPath];
              [cell updateProfileImage:tweetViewModel.profileImage];
          }
      }];
