@@ -12,7 +12,7 @@
 
 4)  Followed VIPER based architecture and MVC design patterns.
 
-5)  Followed dependency injection across the App to facilitate the unit
+5)  Used dependency injection across the App to facilitate the unit
     testing of the classes.
 
 6)  Implemented lazy loading of the images in the table view for better
