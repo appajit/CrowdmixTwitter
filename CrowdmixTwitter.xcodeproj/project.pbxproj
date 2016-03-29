@@ -135,6 +135,7 @@
 		CBD95C7B1CA9BC9C00FB3AF7 /* CrowdmixTweetHashTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrowdmixTweetHashTag.h; sourceTree = "<group>"; };
 		CBD95C7C1CA9BC9C00FB3AF7 /* CrowdmixTweetHashTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrowdmixTweetHashTag.m; sourceTree = "<group>"; };
 		CBE2082E1CA9CF23000BB6B5 /* TweetViewModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetViewModelTests.m; sourceTree = "<group>"; };
+		CBE208301CAA5C4E000BB6B5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DD494A0536EC65FFB59D4767 /* Pods-CrowdmixTwitterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdmixTwitterTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrowdmixTwitterTests/Pods-CrowdmixTwitterTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,6 +183,7 @@
 		CB0D2E3E1CA6B97000304C1D = {
 			isa = PBXGroup;
 			children = (
+				CBE208301CAA5C4E000BB6B5 /* README.md */,
 				CB0D2E491CA6B97000304C1D /* CrowdmixTwitter */,
 				CB0D2E631CA6B97000304C1D /* CrowdmixTwitterTests */,
 				CB0D2E6E1CA6B97000304C1D /* CrowdmixTwitterUITests */,
@@ -876,6 +878,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CrowdmixTwitter/CrowdmixTwitter-Prefix.pch";
 				INFOPLIST_FILE = CrowdmixTwitter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Tholeti.CrowdmixTwitter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -890,6 +893,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CrowdmixTwitter/CrowdmixTwitter-Prefix.pch";
 				INFOPLIST_FILE = CrowdmixTwitter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Tholeti.CrowdmixTwitter;
 				PRODUCT_NAME = "$(TARGET_NAME)";

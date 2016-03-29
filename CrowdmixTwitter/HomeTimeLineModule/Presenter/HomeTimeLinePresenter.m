@@ -52,19 +52,24 @@
          HomeTimeLinePresenter *strongSelf = weakSelf;
          if(strongSelf)
          {
-             //prepare the view models from the server data models
-             __block NSMutableArray *viewModelsArray = [NSMutableArray array];
-             [tweets enumerateObjectsUsingBlock:^(CrowdmixTweet * _Nonnull tweet, NSUInteger idx, BOOL * _Nonnull stop)
+             __block NSMutableArray *viewModelsArray;
+             if(!error)
              {
-                 TweetViewModel *viewModel = [TweetViewModel viewModelFromCrowdmixTweet:tweet];
-                 self.tweetsDictionary[tweet.tweetId] = tweet;
-                 [viewModelsArray addObject:viewModel];
-             }];
+                 //prepare the view models from the server data models
+                 viewModelsArray = [NSMutableArray array];
+                 [tweets enumerateObjectsUsingBlock:^(CrowdmixTweet * _Nonnull tweet, NSUInteger idx, BOOL * _Nonnull stop)
+                 {
+                     TweetViewModel *viewModel = [TweetViewModel viewModelFromCrowdmixTweet:tweet];
+                     self.tweetsDictionary[tweet.tweetId] = tweet;
+                     [viewModelsArray addObject:viewModel];
+                 }];
+             }
              //swiches from background thread to UI thread to allow view controller to set the view model data
-             dispatch_async(dispatch_get_main_queue(), ^{
+             dispatch_async(dispatch_get_main_queue(), ^
+             {
                  if(completionHandler)
                  {
-                     completionHandler(viewModelsArray,nil);
+                     completionHandler(viewModelsArray,error);
                  }
              });
          }

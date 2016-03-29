@@ -95,9 +95,22 @@
          HomeTimeLineViewController *strongSelf = weakSelf;
          if(strongSelf)
          {
-             strongSelf.tweetViewModels = tweetViewModels;
              [strongSelf.activityIndicator stopAnimating];
-             [strongSelf.tableView reloadData];
+             if(error)
+             {
+                 NSString *errorMessage = @"Unable to download the data. Please check the internet connection or try again later.";
+                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Downdload Error" message:errorMessage preferredStyle:UIAlertControllerStyleAlert];
+                 
+                 [alert addAction:[UIAlertAction actionWithTitle:@"OK"
+                            style:UIAlertActionStyleCancel
+                          handler:nil]];
+                 [strongSelf presentViewController:alert animated:YES completion:nil];
+             }
+             else
+             {
+                 strongSelf.tweetViewModels = tweetViewModels;
+                 [strongSelf.tableView reloadData];
+             }
          }
      }];
 }

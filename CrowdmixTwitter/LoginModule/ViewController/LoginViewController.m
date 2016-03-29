@@ -65,8 +65,12 @@
         }
         else
         {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Login failed" message:error.description preferredStyle:UIAlertControllerStyleAlert];
+            NSString *errorMessage = @"Unable to login.Please check the internet connection or try again later.";
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Login Failed" message:errorMessage preferredStyle:UIAlertControllerStyleAlert];
             
+            [alert addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                      style:UIAlertActionStyleCancel
+                                                    handler:nil]];
             [strongSelf presentViewController:alert animated:YES completion:nil];
         }
     }];
