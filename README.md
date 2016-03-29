@@ -9,7 +9,8 @@ Summary of  Implementation:
 6.	Used NSURLSession for network operations.
 7.	Implemented JSON parser using Mantle framework.
 8.	Login-Twitter API:
-        a.	As the social framework requires switching to the Settings screen to enter login details, TwitterKit framework, implemented by Twitter Inc, is used to allow the user to enter the login detail   within the App.
+--------a.As the social framework requires switching to the Settings screen to enter login details, 
+----------TwitterKit framework, implemented by Twitter Inc, is used to allow the user to enter the login detail   within the App.
         b.	As implementing Twitter xAuth(exchange username and password) is restricted and requires approval from Twitter, Login screen with username and password is not implemented. Rather, TwitterKit login API is used where it  opens the web view to allow the user to enter the login details inside the App.
         c.	As TwitterKit API logout API doesn’t delete the twitter account from the system, it  requires deleting it manually from the settings screen for switching between the users. However, it clears the local Twitter session on logout.
 
