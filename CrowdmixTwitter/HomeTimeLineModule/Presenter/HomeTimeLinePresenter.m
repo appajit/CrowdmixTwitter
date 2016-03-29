@@ -17,7 +17,7 @@
 
 @property (nonatomic,weak) id<CrowdmixTwitterServicing> crowdMixTwitterService;
 @property (nonatomic,weak) id<ProfileImageDownloading>  profileImageDownloadService;
-@property (nonatomic,strong) NSMutableDictionary        *tweetsDictionary;
+@property (atomic,strong) NSMutableDictionary        *tweetsDictionary;
 @property (nonatomic,copy) HomeTimeLineCompletionBlock  completionBlock;
 
 @end

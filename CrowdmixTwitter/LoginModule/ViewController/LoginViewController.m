@@ -49,30 +49,38 @@
     __weak typeof(self)weakSelf = self;
     [self.crowdMixTwitterService loginWithCompletionBlock:^(BOOL success, NSError *error)
     {
-        [self.activityIndicator stopAnimating];
-        LoginViewController *strongSelf = weakSelf;
-        if(!strongSelf)
-        {
-            return;
-        }
         
-        if(success)
+        dispatch_async(dispatch_get_main_queue(), ^
         {
-            if(strongSelf.completionBlock)
+            LoginViewController *strongSelf = weakSelf;
+            if(!strongSelf)
             {
-                strongSelf.completionBlock();
+                return;
             }
-        }
-        else
-        {
-            NSString *errorMessage = @"Unable to login.Please check the internet connection or try again later.";
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Login Failed" message:errorMessage preferredStyle:UIAlertControllerStyleAlert];
             
-            [alert addAction:[UIAlertAction actionWithTitle:@"OK"
-                                                      style:UIAlertActionStyleCancel
-                                                    handler:nil]];
-            [strongSelf presentViewController:alert animated:YES completion:nil];
-        }
+            [strongSelf.activityIndicator stopAnimating];
+            strongSelf.loginButton.enabled = YES;
+            
+            if(success)
+            {
+                if(strongSelf.completionBlock)
+                {
+                    strongSelf.completionBlock();
+                }
+            }
+            else
+            {
+                NSString *errorMessage = @"Unable to login.Please check the internet connection or try again later.";
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Login Failed" message:errorMessage preferredStyle:UIAlertControllerStyleAlert];
+                
+                [alert addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                          style:UIAlertActionStyleCancel
+                                                        handler:nil]];
+                [strongSelf presentViewController:alert animated:YES completion:nil];
+            }
+            
+        });
+        
     }];
 }
 
