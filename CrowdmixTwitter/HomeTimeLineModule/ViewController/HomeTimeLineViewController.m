@@ -78,6 +78,11 @@
                                                            constant:0.0]];
     
     [self.activityIndicator startAnimating];
+    
+    //initial estimated cell height
+    self.tableView.estimatedRowHeight = 44.0;
+    //self sizing cell property
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 

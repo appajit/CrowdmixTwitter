@@ -34,7 +34,7 @@
 {
     NSDictionary*tweetJsonDictionary = @{@"created_at": @"Sun Mar 27 18:01:25 +0000 2016",
                                          @"id": @11,
-                                         @"text": @"user1_#hashTagText",
+                                         @"text": @"user1_#hashTagText_http://www.google.com",
                                          @"user": @{
                                                  @"name": @"user1",
                                                  @"screen_name": @"user1_screename",
@@ -46,8 +46,13 @@
                                          @"entities": @{
                                              @"hashtags": @[
                                                      @{@"text" : @"#hashTagText",
-                                                       @"indices" : @[@6,@17]}]}
-                                         };
+                                                       @"indices" : @[@6,@17]}],
+                                             @"urls": @[
+                                                     @{@"url" : @"http://www.google.com",
+                                                       @"indices" : @[@19,@39]}]
+                                             }
+                                         
+                                    };
     
     NSError* error;
     CrowdmixTweet *tweet = [MTLJSONAdapter modelOfClass:[CrowdmixTweet class]
@@ -56,12 +61,15 @@
     
     TweetViewModel *viewModel = [TweetViewModel viewModelFromCrowdmixTweet:tweet];
     NSRange range =NSMakeRange(0,17);
-    NSDictionary* attributes =  [viewModel.tweetText attributesAtIndex:6 effectiveRange:&range];
+    NSDictionary* hashTagAttributes =  [viewModel.tweetText attributesAtIndex:6 effectiveRange:&range];
+    NSDictionary* urlAttributes =  [viewModel.tweetText attributesAtIndex:19 effectiveRange:&range];
+
     
-    XCTAssertTrue([attributes[NSForegroundColorAttributeName] isEqual:[UIColor blueColor]],@"hash tag is not set");
+    XCTAssertTrue([hashTagAttributes[NSForegroundColorAttributeName] isEqual:[UIColor blueColor]],@"hash tag is not set in the tweet");
+    XCTAssertTrue([urlAttributes[NSForegroundColorAttributeName] isEqual:[UIColor blueColor]],@"url is not set in the tweet");
     XCTAssertTrue([viewModel.name isEqualToString:@"user1"],@"name is incorrect");
     XCTAssertTrue([viewModel.screenName isEqualToString:@"@user1_screename"],@"screen name is incorrect");
-    XCTAssertTrue([viewModel.tweetText.string isEqualToString:@"user1_#hashTagText"],@"tweet text is incorrect");
+    XCTAssertTrue([viewModel.tweetText.string isEqualToString:@"user1_#hashTagText_http://www.google.com"],@"tweet text is incorrect");
 }
 
 @end

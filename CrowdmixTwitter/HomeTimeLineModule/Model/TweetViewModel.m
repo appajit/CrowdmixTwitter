@@ -13,6 +13,8 @@
 #import "NSDateFormatter+Twitter.h"
 #import "CrowdmixTweetEntities.h"
 #import "CrowdmixTweetHashTag.h"
+#import "CrowdmixTweetUrl.h"
+
 
 static NSUInteger const kRoundedCornerSize = 5;
 
@@ -27,7 +29,9 @@ static NSUInteger const kRoundedCornerSize = 5;
     viewModel.profileImage  = [profileImage imageWithRoundedCornersSize:kRoundedCornerSize];
     
     /* apply hash tags to the tweet text by changing the hash tag text color in the tweet*/
-    viewModel.tweetText     = [self tweetTextWithHashTagsIfAny:crowdmixTweet];
+    viewModel.tweetText     = [self tweetTextWithHashTagsAndUrlsIfAny:crowdmixTweet];
+    
+    
     
     viewModel.name          = crowdmixTweet.tweetUser.name;
     
@@ -42,19 +46,35 @@ static NSUInteger const kRoundedCornerSize = 5;
     return viewModel;
 }
 
-+(NSAttributedString*) tweetTextWithHashTagsIfAny:(CrowdmixTweet*) tweet
++(NSAttributedString*) tweetTextWithHashTagsAndUrlsIfAny:(CrowdmixTweet*) tweet
 {
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:tweet.text];
     
     for (CrowdmixTweetHashTag *hashTag in tweet.entities.hashTags)
     {
-        NSInteger indices0 = ((NSNumber*)hashTag.indices[0]).integerValue;
-        NSInteger indices1 = ((NSNumber*)hashTag.indices[1]).integerValue;
+        [self applyIndices:hashTag.indices toAttributedString:attributedString];
+    }
+    
+    for (CrowdmixTweetHashTag *url in tweet.entities.urls)
+    {
+        [self applyIndices:url.indices toAttributedString:attributedString];
+    }
+
+    return attributedString;
+}
+
++(void) applyIndices:(NSArray*) indices
+  toAttributedString:(NSMutableAttributedString*) attributedString
+{
+    if(indices.count == 2 && attributedString)
+    {
+        NSInteger indices0 = ((NSNumber*)indices[0]).integerValue;
+        NSInteger indices1 = ((NSNumber*)indices[1]).integerValue;
         
         NSInteger location  = indices0;
         NSUInteger length   = indices1-indices0;
         
-         NSRange range = NSMakeRange(location,length);
+        NSRange range = NSMakeRange(location,length);
         if (range.location != NSNotFound)
         {
             [attributedString addAttribute:NSForegroundColorAttributeName
@@ -62,8 +82,6 @@ static NSUInteger const kRoundedCornerSize = 5;
                                      range:range];
         }
     }
-    
-    return attributedString;
 }
 
 

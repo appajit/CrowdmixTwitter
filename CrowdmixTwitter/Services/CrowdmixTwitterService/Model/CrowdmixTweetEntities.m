@@ -8,13 +8,15 @@
 
 #import "CrowdmixTweetEntities.h"
 #import "CrowdmixTweetHashTag.h"
+#import "CrowdmixTweetUrl.h"
 
 @implementation CrowdmixTweetEntities
 
 /* mapping from json to object properties */
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
-             @"hashTags"   : @"hashtags"
+             @"hashTags"   : @"hashtags",
+              @"urls"   : @"urls"
              };
 }
 
@@ -22,6 +24,12 @@
 + (NSValueTransformer *)hashTagsJSONTransformer
 {
     return [MTLJSONAdapter arrayTransformerWithModelClass:[CrowdmixTweetHashTag class]];
+}
+
+/* transforms the tweet json url  into CrowdmixTweetUrl object array property */
++ (NSValueTransformer *)urlsJSONTransformer
+{
+    return [MTLJSONAdapter arrayTransformerWithModelClass:[CrowdmixTweetUrl class]];
 }
 
 
