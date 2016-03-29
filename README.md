@@ -46,9 +46,9 @@
 
     a.  Used TwitterKit compose UI module(TWRComposer), which displays
         composer to enter and send the tweet text. It is recommended to
-        user framework provided composer. As sending of the tweet to the
-        server takes some time, the home time line will be refreshed 5
-        seconds after the tweet is posted.
+        use framework provided tweet composer. As sending of the tweet
+        to the server takes some time, the home time line data will be
+        refreshed 5 seconds after the tweet is posted.
 
 12) Home Time Line -Twitter API:
 
