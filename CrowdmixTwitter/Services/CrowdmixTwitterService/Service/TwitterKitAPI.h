@@ -10,8 +10,9 @@
 @class TWTRAPIClient;
 @class TWTRComposer;
 
-/* This object contains all the required TWitterKit objects to acheive different fucntionality of the twitter API. By collecting all the dependent objects into a single object, it will help to mock all the APIs as part of unit testing.
+/* This object contains all the required TWitterKit objects to acheive different functionality of the twitter API. By collecting all the dependent objects into a single object, it will help to mock all the APIs as part of unit testing.
  */
+
 @interface TwitterKitAPI : NSObject
 
 /* twiiter object for login functionality */

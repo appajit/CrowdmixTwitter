@@ -9,24 +9,29 @@
 @class CrowdmixTweet;
 
 /*
- * This model prepares all the required view data from the server data to display directly in the view.
+ * This model prepares all the required view data from the server data to display in the view.
  */
 
 @interface TweetViewModel : NSObject
 
 /* user profile image */
 @property (copy, nonatomic)  UIImage  *profileImage;
+
 /* tweet user name */
 @property (copy, nonatomic)    NSString *name;
+
 /* tweet user screen name in the format "@screen name" */
 @property (copy, nonatomic)    NSString *screenName;
 
 /* prepares the tweet age from the current data and tweet created data */
 @property (copy, nonatomic)    NSString *tweetAge;
+
 /* tweet text */
 @property (copy, nonatomic)    NSAttributedString *tweetText;
+
 /* tweet id */
 @property (copy,nonatomic)     NSNumber *tweetId;
+
 /* flag to know whether the profile image is downloaded from the image URL or not */
 @property (nonatomic)          BOOL profileImageDownloaded;
 

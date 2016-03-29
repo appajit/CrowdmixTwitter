@@ -10,10 +10,6 @@
 #import "AppManager.h"
 #import "ServiceProvider.h"
 
-@interface AppDelegate ()
-
-
-@end
 
 @implementation AppDelegate
 

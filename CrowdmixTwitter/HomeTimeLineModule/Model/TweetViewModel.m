@@ -26,8 +26,9 @@ static NSUInteger const kRoundedCornerSize = 5;
     UIImage *profileImage   = [UIImage imageNamed:@"loading_image"];
     viewModel.profileImage  = [profileImage imageWithRoundedCornersSize:kRoundedCornerSize];
     
-    /* apply hash tags to the tweet text by chaning the hash tag text color */
+    /* apply hash tags to the tweet text by changing the hash tag text color in the tweet*/
     viewModel.tweetText     = [self tweetTextWithHashTagsIfAny:crowdmixTweet];
+    
     viewModel.name          = crowdmixTweet.tweetUser.name;
     
     /* prepare the tweet age from the created date */
@@ -35,6 +36,7 @@ static NSUInteger const kRoundedCornerSize = 5;
     
     /* append '@' to the screen name */
     viewModel.screenName    = [NSString stringWithFormat:@"@%@",crowdmixTweet.tweetUser.screenName];
+    
     viewModel.tweetId       = crowdmixTweet.tweetId;
     
     return viewModel;
@@ -43,13 +45,14 @@ static NSUInteger const kRoundedCornerSize = 5;
 +(NSAttributedString*) tweetTextWithHashTagsIfAny:(CrowdmixTweet*) tweet
 {
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:tweet.text];
+    
     for (CrowdmixTweetHashTag *hashTag in tweet.entities.hashTags)
     {
         NSInteger indices0 = ((NSNumber*)hashTag.indices[0]).integerValue;
         NSInteger indices1 = ((NSNumber*)hashTag.indices[1]).integerValue;
         
         NSInteger location  = indices0;
-        NSUInteger length  = indices1-indices0;
+        NSUInteger length   = indices1-indices0;
         
          NSRange range = NSMakeRange(location,length);
         if (range.location != NSNotFound)
@@ -67,8 +70,8 @@ static NSUInteger const kRoundedCornerSize = 5;
 +(NSString*) tweetAgeFromDateString:(NSString*) dateString
 {
     NSDateFormatter *dateFormatter = [NSDateFormatter twitterDateFormatter];
-    NSInteger seconds = [[NSDate date] timeIntervalSinceDate:[dateFormatter dateFromString:dateString]];
     
+    NSInteger seconds = [[NSDate date] timeIntervalSinceDate:[dateFormatter dateFromString:dateString]];
     NSInteger hours   = (int)seconds / 3600;
     NSInteger minutes = (seconds - (hours*3600)) / 60;
     NSInteger days    = (((seconds/60)/60)/24);

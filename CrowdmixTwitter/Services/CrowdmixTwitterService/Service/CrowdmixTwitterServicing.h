@@ -22,18 +22,15 @@ typedef void(^ComposeTweetCompletionBlock)();
 -(BOOL) isUserLoggedIn;
 
 /**
- *   This method will present webview based UI to allow the user to log in if there are no saved Twitter login 
- *   credentials.
+ *   This method will present webview based UI to allow the user to log in if there are no saved Twitter login  credentials.
  *
- *  @param completionBlock The completion block will be called after authentication is successful or if there
- *                         is an error.
+ *  @param completionBlock The completion block will be called after authentication is successful or if there is an error.
  *
  */
 -(void) loginWithCompletionBlock:(TwitterLoginCompletionBlock)completionBlock;
 
 /**
- *  Clears the local user twitter session.This will not remove the system Twitter account nor make a network
- *  request to invalidate the session.
+ *  Clears the local user twitter session.This will not remove the system Twitter account nor make a network request to invalidate the session.
  *
  */
 -(void) logout;

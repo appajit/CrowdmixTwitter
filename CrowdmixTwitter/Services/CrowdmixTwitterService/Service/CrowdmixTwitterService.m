@@ -86,21 +86,26 @@ static NSUInteger const kMaxTweets = 20;
              tweetsJsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                options:NSJSONReadingAllowFragments
                                                                  error:&jsonError];
-             
-             /* if server sends more than 20 tweets, trim it to 20 */
-              NSMutableArray *mutableTweetsJsonArray = [NSMutableArray arrayWithArray:tweetsJsonArray];
-             if(tweetsJsonArray.count > kMaxTweets)
-             {
-                 [mutableTweetsJsonArray removeObjectsInRange:NSMakeRange(kMaxTweets, tweetsJsonArray.count-kMaxTweets)];
-             }
              if(jsonError == nil)
              {
+                 /* if server sends more than 20 tweets, trim it to 20 */
+                 NSMutableArray *mutableTweetsJsonArray = [NSMutableArray arrayWithArray:tweetsJsonArray];
+                 
+                 if(tweetsJsonArray.count > kMaxTweets)
+                 {
+                     NSRange range = NSMakeRange(kMaxTweets, tweetsJsonArray.count-kMaxTweets);
+                     if(range.location != NSNotFound)
+                     {
+                         [mutableTweetsJsonArray removeObjectsInRange:range];
+                     }
+                 }
+                 
                  id responseObject = [MTLJSONAdapter modelsOfClass:[CrowdmixTweet class]
-                                                  fromJSONArray:mutableTweetsJsonArray
-                                                          error:&jsonError];
+                                                     fromJSONArray:mutableTweetsJsonArray
+                                                             error:&jsonError];
                  if(completionBlock)
                  {
-                     completionBlock(responseObject,nil);
+                     completionBlock(responseObject,jsonError);
                  }
              }
              else
@@ -110,7 +115,6 @@ static NSUInteger const kMaxTweets = 20;
                      completionBlock(nil,jsonError);
                  }
              }
-             
          }
          else
          {
@@ -129,7 +133,8 @@ static NSUInteger const kMaxTweets = 20;
     TWTRComposer *composer = self.twitterKitAPI.twitterComposer;
     
     // Called from a UIViewController
-    [composer showFromViewController:viewController completion:^(TWTRComposerResult result)
+    [composer showFromViewController:viewController
+                          completion:^(TWTRComposerResult result)
      {
          if(completionBlock)
          {

@@ -13,8 +13,7 @@
 @interface CrowdmixTwitterService : NSObject<CrowdmixTwitterServicing>
 
 /**
-*   Instance method with the dependency injection of TwitterKitAPI object.By injecting all TwitterKit object 
-*   dependencies,it will be easy to unit test all service APIs with the mocked TwitterKit objects.As there are more than one TwitterKi objects are required, all those depencies are passed as a single object.
+*   Instance method with the dependency injection of TwitterKitAPI object.By injecting all TwitterKit object  dependencies,it will be easy to unit test all service APIs with the mocked TwitterKit objects.As there are more than one TwitterKi objects are required, all those depencies are passed as a single object.
 *
 *  @param twitterKitAPI  object which contains all TwitterKit dependecy objects such as   
                          Twitter,TWTRAPIClient,TWTRComposer.

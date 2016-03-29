@@ -30,6 +30,7 @@
                                                               completionBlock:completionblock];
     //inject the presenter
     [timeLineViewController injectPresenter:presenter];
+    
     return timeLineNavigationController;
 }
 

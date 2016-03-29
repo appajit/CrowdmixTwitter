@@ -11,7 +11,7 @@
 @class TweetViewModel;
 
 
-typedef void(^FetchDataCompletionHandler)(NSArray *tweetViewModels,NSError *error);
+typedef void(^FetchHomeTimeLineDataCompletionHandler)(NSArray *tweetViewModels,NSError *error);
 typedef void(^FetchProfileImageCompletionHandler)();
 typedef void(^HomeTimeLineCompletionBlock)();
 typedef void(^ComposeTweetCompletionHandler)();
@@ -20,7 +20,7 @@ typedef void(^ComposeTweetCompletionHandler)();
 /*
  * The Presenter class acts as a single point of contact to its view controller by abstracting
  * all the required services in the backgorund.It uses the respective service basing upon the view controller
- * request and provides the singel view model object by consuming different server data models.
+ * request and provides the single view model object by consuming different server data models.
  */
 
 @interface HomeTimeLinePresenter : NSObject
@@ -46,7 +46,7 @@ typedef void(^ComposeTweetCompletionHandler)();
  * @param completionHandler completion block to notify when data is available
  *
  */
--(void) fetchHomeTimeLineDataWithCompletionHandler:(FetchDataCompletionHandler) completionHandler;
+-(void) fetchHomeTimeLineDataWithCompletionHandler:(FetchHomeTimeLineDataCompletionHandler) completionHandler;
 
 
 
@@ -60,7 +60,7 @@ typedef void(^ComposeTweetCompletionHandler)();
                 withCompletionHandler:(FetchProfileImageCompletionHandler) competionHandler;
 
 /*
- * Provides the tweet composer UI to allow the user to type and sent the text.
+ * Provides the tweet composer UI to allow the user to type and send the text.
  *
  * @param viewController view controller on which the composer UI to be presented.
  *

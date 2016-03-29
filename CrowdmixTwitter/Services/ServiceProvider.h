@@ -15,7 +15,7 @@
 /**
  *  creates singleton instance object to provide different service objects
  *
- *  @param sharedInstance shared instance to share across multiple modules
+ *  @param sharedInstance shared instance to access the object across multiple modules
  *
  *  @return instance object
  */

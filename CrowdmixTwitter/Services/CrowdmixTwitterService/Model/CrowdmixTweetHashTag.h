@@ -14,6 +14,6 @@
 @property (nonatomic,copy,readonly) NSString *text;
 
 /* indices of hash tag in the tweet text */
-@property (nonatomic,copy,readonly) NSArray *indices;
+@property (nonatomic,strong,readonly) NSArray *indices;
 
 @end

@@ -41,9 +41,9 @@
     return self;
 }
 
--(void) fetchHomeTimeLineDataWithCompletionHandler:(FetchDataCompletionHandler) completionHandler
+-(void) fetchHomeTimeLineDataWithCompletionHandler:(FetchHomeTimeLineDataCompletionHandler) completionHandler
 {
-    //delete the cache on refreshing of the data request */
+    //delete the cache before refreshing of the data request */
     [self.tweetsDictionary removeAllObjects];
     
     __weak typeof(self)weakSelf = self;

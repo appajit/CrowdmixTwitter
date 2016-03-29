@@ -11,7 +11,7 @@
 
 /*
  * Creates the home time line view controller by injecting all the required objects such as presenter and services.
- *  @param completionBlock block to notify when users logs out
+ * @param  completionBlock block to notify when user logs out
  * @return returns HomeTimeLineViewController
  */
 +(UIViewController*) contentPanelWithCompletionBlock:(void(^)()) completionBlock;

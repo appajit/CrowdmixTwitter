@@ -28,12 +28,12 @@
 /**
  *  user of the tweet who posted it.
  */
-@property (nonatomic,copy,readonly) CrowdmixTweetUser *tweetUser;
+@property (nonatomic,strong,readonly) CrowdmixTweetUser *tweetUser;
 
 
 /**
  *  tweet entities such as hash tags etc.
  */
-@property (nonatomic,copy,readonly) CrowdmixTweetEntities *entities;
+@property (nonatomic,strong,readonly) CrowdmixTweetEntities *entities;
 
 @end
