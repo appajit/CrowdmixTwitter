@@ -77,7 +77,7 @@
                                                   error:&error];
     
     TweetViewModel *viewModel = [TweetViewModel viewModelFromCrowdmixTweet:tweet];
-    NSRange range =NSMakeRange(0,17);
+    NSRange range =NSMakeRange(0,0);
     NSDictionary* hashTagAttributes =  [viewModel.tweetText attributesAtIndex:6 effectiveRange:&range];
     
     XCTAssertTrue([hashTagAttributes[NSForegroundColorAttributeName] isEqual:[UIColor blueColor]],@"hash tag is not set in the tweet");
@@ -106,7 +106,7 @@
                                                   error:&error];
     
     TweetViewModel *viewModel = [TweetViewModel viewModelFromCrowdmixTweet:tweet];
-    NSRange range =NSMakeRange(0,17);
+    NSRange range =NSMakeRange(0,0);
     NSDictionary* urlAttributes =  [viewModel.tweetText attributesAtIndex:19 effectiveRange:&range];
     
     
