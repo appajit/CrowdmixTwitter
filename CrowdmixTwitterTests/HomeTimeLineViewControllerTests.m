@@ -97,7 +97,6 @@
         
         NSArray *tweetViewModels = @[viewModel1,viewModel2];
         passedBlock(tweetViewModels, nil);
-
     };
     
     [[[self.mockPresenter stub] andDo:proxyBlock] fetchHomeTimeLineDataWithCompletionHandler:OCMOCK_ANY];
@@ -110,14 +109,14 @@
                                                                                         cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     XCTAssertTrue([cell.nameLabel.text isEqual:@"user1"],@"name label is incorrect");
     XCTAssertTrue([cell.screenNameLabel.text isEqual:@"@user1_screen_name"],@"screen name label is incorrect");
-    XCTAssertTrue([cell.tweetTextLabel.text isEqual:@"user1_tweet_text"],@"screen name label is incorrect");
+    XCTAssertTrue([cell.tweetTextView.text isEqual:@"user1_tweet_text"],@"screen name label is incorrect");
     
     
     cell = (HomeTimeLineTableViewCell*) [self.homeTimeLineViewController tableView:self.homeTimeLineViewController.tableView
                                                              cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
     XCTAssertTrue([cell.nameLabel.text isEqual:@"user2"],@"name label is incorrect");
     XCTAssertTrue([cell.screenNameLabel.text isEqual:@"@user2_screen_name"],@"screen name label is incorrect");
-    XCTAssertTrue([cell.tweetTextLabel.text isEqual:@"user2_tweet_text"],@"screen name label is incorrect");
+    XCTAssertTrue([cell.tweetTextView.text isEqual:@"user2_tweet_text"],@"screen name label is incorrect");
 
 }
 

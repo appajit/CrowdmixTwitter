@@ -88,8 +88,8 @@ static NSUInteger const kMaxTweets = 20;
                                                                  error:&jsonError];
              if(jsonError == nil)
              {
-             //    NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-               //  NSLog(@"%@",newStr);
+ //                NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+   //              NSLog(@"%@",newStr);
                  /* if server sends more than 20 tweets, trim it to 20 */
                  NSMutableArray *mutableTweetsJsonArray = [NSMutableArray arrayWithArray:tweetsJsonArray];
                  

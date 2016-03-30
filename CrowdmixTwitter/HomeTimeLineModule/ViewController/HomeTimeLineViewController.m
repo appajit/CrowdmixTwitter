@@ -11,7 +11,8 @@
 #import "HomeTimeLinePresenter.h"
 #import "TweetViewModel.h"
 
-@interface HomeTimeLineViewController ()<UITableViewDataSource>
+@interface HomeTimeLineViewController ()<UITableViewDataSource,
+                                         UITableViewDelegate>
 
 @property (nonatomic, strong) UIActivityIndicatorView   *activityIndicator;
 @property (nonatomic,strong) HomeTimeLinePresenter      *presenter;
@@ -32,6 +33,7 @@
     [super viewDidLoad];
     
     self.tableView.dataSource  = self;
+    self.tableView.delegate = self;
     
     //set navigation title
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twitter_blue"]];
@@ -232,5 +234,16 @@
 {
     [self loadImagesForOnscreenRows];
 }
+
+#pragma mark - UITableViewDelegate methods
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.selected = NO;
+}
+
+
+
 
 @end

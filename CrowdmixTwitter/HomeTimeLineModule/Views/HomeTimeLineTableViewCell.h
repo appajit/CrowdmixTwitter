@@ -14,7 +14,7 @@
 @property (weak, nonatomic,readonly) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic,readonly) IBOutlet UILabel *screenNameLabel;
 @property (weak, nonatomic,readonly) IBOutlet UILabel *tweetAgeLabel;
-@property (weak, nonatomic,readonly) IBOutlet UILabel *tweetTextLabel;
+@property (weak, nonatomic,readonly) IBOutlet UITextView *tweetTextView;
 
 
 /* cell identifier */

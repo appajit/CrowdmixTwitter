@@ -14,8 +14,6 @@
 #import "CrowdmixTweetEntities.h"
 #import "CrowdmixTweetHashTag.h"
 #import "CrowdmixTweetUrl.h"
-#import "CrowdmixTweetMedia.h"
-#import "CrowdmixTweetExtendedEntities.h"
 
 
 static NSUInteger const kRoundedCornerSize = 5;
@@ -31,7 +29,7 @@ static NSUInteger const kRoundedCornerSize = 5;
     viewModel.profileImage  = [profileImage imageWithRoundedCornersSize:kRoundedCornerSize];
     
     /* apply hash tags to the tweet text by changing the hash tag text color in the tweet*/
-    viewModel.tweetText     = [self tweetTextWithHashTagsAndUrlsIfAny:crowdmixTweet];
+    viewModel.tweetText     = [self tweetTextWithTappableHashTagsAndUrlsIfAny:crowdmixTweet];
     
     viewModel.name          = crowdmixTweet.tweetUser.name;
     
@@ -46,15 +44,15 @@ static NSUInteger const kRoundedCornerSize = 5;
     return viewModel;
 }
 
-+(NSAttributedString*) tweetTextWithHashTagsAndUrlsIfAny:(CrowdmixTweet*) tweet
+/* converts hashtags and url into  tappable links */
++(NSAttributedString*) tweetTextWithTappableHashTagsAndUrlsIfAny:(CrowdmixTweet*) tweet
 {
     NSMutableAttributedString *tweetAttributedString = [[NSMutableAttributedString alloc] initWithString:tweet.text];
     
+    //convert all hash tags into tappable links
     for (CrowdmixTweetHashTag *hashTag in tweet.entities.hashTags)
     {
         NSRange hashTagRange = [self rangeFromIndices:hashTag.indices];
-        
-        
         if(hashTagRange.location != NSNotFound)
         {
             [tweetAttributedString addAttribute: NSLinkAttributeName
@@ -63,12 +61,8 @@ static NSUInteger const kRoundedCornerSize = 5;
         }
     }
     
-    for (CrowdmixTweetMedia *url in tweet.extendedEntities.mediaArray)
-    {
-        [self configureDisplayUrlForTweetUrl:url
-                               inTweetString:tweetAttributedString];
-    }
     
+    //convert allurls into tappable links
     for (CrowdmixTweetUrl *url in tweet.entities.urls)
     {
         
@@ -79,6 +73,7 @@ static NSUInteger const kRoundedCornerSize = 5;
     return tweetAttributedString;
 }
 
+//Replaces the url with the tappable display url link
 +(void) configureDisplayUrlForTweetUrl:(CrowdmixTweetUrl*) tweetUrl
                          inTweetString:(NSMutableAttributedString*) tweetAttributedString
 {
@@ -90,6 +85,7 @@ static NSUInteger const kRoundedCornerSize = 5;
                           withAttributedString:attributedDisplayUrl];
 }
 
+//prepares the range from the indices
 +(NSRange) rangeFromIndices:(NSArray*) indices
 {
     NSRange range;
@@ -107,7 +103,7 @@ static NSUInteger const kRoundedCornerSize = 5;
 }
 
 
-
+//Prepares the age the of the tweet from the created date of the tweet
 +(NSString*) tweetAgeFromDateString:(NSString*) dateString
 {
     NSDateFormatter *dateFormatter = [NSDateFormatter twitterDateFormatter];
@@ -141,6 +137,7 @@ static NSUInteger const kRoundedCornerSize = 5;
 
 -(void) configureProfileImage:(UIImage*) image
 {
+    //applies the rounded corners to the image
     self.profileImage = [image imageWithRoundedCornersSize:kRoundedCornerSize];
     self.profileImageDownloaded = YES;
 }

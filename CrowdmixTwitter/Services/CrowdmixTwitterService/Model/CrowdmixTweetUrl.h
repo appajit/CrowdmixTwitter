@@ -16,7 +16,7 @@
 /* indices of url in the tweet text */
 @property (nonatomic,copy,readonly) NSString *url;
 
-/* indices of url in the tweet text */
+/* display url of the url in the tweet text */
 @property (nonatomic,copy,readonly) NSString *displayUrl;
 
 

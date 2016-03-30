@@ -19,8 +19,7 @@ static NSString * const kCellIdentifier = @"HomeTimeLineTableViewCell";
 @property (weak, nonatomic,readwrite) IBOutlet UILabel     *nameLabel;
 @property (weak, nonatomic,readwrite) IBOutlet UILabel     *screenNameLabel;
 @property (weak, nonatomic,readwrite) IBOutlet UILabel     *tweetAgeLabel;
-@property (weak, nonatomic,readwrite) IBOutlet UILabel     *tweetTextLabel;
-@property (weak, nonatomic) IBOutlet UITextView *tweetTextView;
+@property (weak, nonatomic,readwrite) IBOutlet UITextView *tweetTextView;
 
 @end
 
@@ -40,7 +39,6 @@ static NSString * const kCellIdentifier = @"HomeTimeLineTableViewCell";
 -(void) configureWithTweetViewModel:(TweetViewModel*) tweetViewModel
 {
     self.profileImageView.image = tweetViewModel.profileImage;
-    self.tweetTextLabel.attributedText    = tweetViewModel.tweetText;
     self.tweetTextView.attributedText    = tweetViewModel.tweetText;
     self.nameLabel.text         = tweetViewModel.name;
     self.tweetAgeLabel.text     = tweetViewModel.tweetAge;
