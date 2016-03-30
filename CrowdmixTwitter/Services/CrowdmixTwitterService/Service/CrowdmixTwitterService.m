@@ -41,6 +41,7 @@ static NSUInteger const kMaxTweets = 20;
         [self.twitterKitAPI.twitter startWithConsumerKey:kConsumerKey
                                           consumerSecret:kConsumerSecret];
         _operationQueue = [NSOperationQueue new];
+        _operationQueue.maxConcurrentOperationCount = 1;
         
     }
     
