@@ -24,6 +24,7 @@ static NSUInteger const kMaxTweets = 20;
 @interface CrowdmixTwitterService ()
 
 @property (nonatomic,strong) TwitterKitAPI *twitterKitAPI;
+@property (nonatomic,strong) NSOperationQueue *operationQueue;
 
 @end
 
@@ -39,6 +40,8 @@ static NSUInteger const kMaxTweets = 20;
         _twitterKitAPI = twitterKitAPI;
         [self.twitterKitAPI.twitter startWithConsumerKey:kConsumerKey
                                           consumerSecret:kConsumerSecret];
+        _operationQueue = [NSOperationQueue new];
+        
     }
     
     return self;
@@ -63,6 +66,7 @@ static NSUInteger const kMaxTweets = 20;
 
 -(void) downloadHomeTimeLineWithCompletionBlock:(DownloadHomeTimelineCompletionBlock) completionBlock
 {
+    
     TWTRAPIClient *twitterClient = self.twitterKitAPI.twitterClient;
     
     NSError *clientError;
@@ -74,58 +78,60 @@ static NSUInteger const kMaxTweets = 20;
                                                             URL:kHomeTimeLinesURL
                                                      parameters:params
                                                           error:&clientError];
-    
     [twitterClient sendTwitterRequest:request
                            completion:^(NSURLResponse *response, NSData *data, NSError *connectionError)
      {
-         NSInteger statuscode = [((NSHTTPURLResponse*)response) statusCode];
-         if (statuscode == 200 && data)
-         {
-             NSArray *tweetsJsonArray;
-             NSError* jsonError;
-             tweetsJsonArray = [NSJSONSerialization JSONObjectWithData:data
-                                                               options:NSJSONReadingAllowFragments
-                                                                 error:&jsonError];
-             if(jsonError == nil)
+         
+         [self.operationQueue addOperationWithBlock:^{
+             
+             NSInteger statuscode = [((NSHTTPURLResponse*)response) statusCode];
+             if (statuscode == 200 && data)
              {
- //                NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-   //              NSLog(@"%@",newStr);
-                 /* if server sends more than 20 tweets, trim it to 20 */
-                 NSMutableArray *mutableTweetsJsonArray = [NSMutableArray arrayWithArray:tweetsJsonArray];
-                 
-                 if(tweetsJsonArray.count > kMaxTweets)
+                 NSArray *tweetsJsonArray;
+                 NSError* jsonError;
+                 tweetsJsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                   options:NSJSONReadingAllowFragments
+                                                                     error:&jsonError];
+                 if(jsonError == nil)
                  {
-                     NSRange range = NSMakeRange(kMaxTweets, tweetsJsonArray.count-kMaxTweets);
-                     if(range.location != NSNotFound)
+                     /* if server sends more than 20 tweets, trim it to 20 */
+                     NSMutableArray *mutableTweetsJsonArray = [NSMutableArray arrayWithArray:tweetsJsonArray];
+                     
+                     if(tweetsJsonArray.count > kMaxTweets)
                      {
-                         [mutableTweetsJsonArray removeObjectsInRange:range];
+                         NSRange range = NSMakeRange(kMaxTweets, tweetsJsonArray.count-kMaxTweets);
+                         if(range.location != NSNotFound)
+                         {
+                             [mutableTweetsJsonArray removeObjectsInRange:range];
+                         }
+                     }
+                     
+                     id responseObject = [MTLJSONAdapter modelsOfClass:[CrowdmixTweet class]
+                                                         fromJSONArray:mutableTweetsJsonArray
+                                                                 error:&jsonError];
+                     if(completionBlock)
+                     {
+                         completionBlock(responseObject,jsonError);
                      }
                  }
-                 
-                 id responseObject = [MTLJSONAdapter modelsOfClass:[CrowdmixTweet class]
-                                                     fromJSONArray:mutableTweetsJsonArray
-                                                             error:&jsonError];
-                 if(completionBlock)
+                 else
                  {
-                     completionBlock(responseObject,jsonError);
+                     if(completionBlock)
+                     {
+                         completionBlock(nil,jsonError);
+                     }
                  }
              }
              else
              {
                  if(completionBlock)
                  {
-                     completionBlock(nil,jsonError);
+                     completionBlock(nil,connectionError);
                  }
              }
-         }
-         else
-         {
-             if(completionBlock)
-             {
-                 completionBlock(nil,connectionError);
-             }
-         }
-     }];
+             
+         }];
+    }];
 }
 
 
