@@ -80,7 +80,7 @@
     NSRange range =NSMakeRange(0,0);
     NSDictionary* hashTagAttributes =  [viewModel.tweetText attributesAtIndex:6 effectiveRange:&range];
     
-    XCTAssertTrue([hashTagAttributes[NSForegroundColorAttributeName] isEqual:[UIColor blueColor]],@"hash tag is not set in the tweet");
+    XCTAssertTrue([hashTagAttributes[NSLinkAttributeName] isEqualToString:@"#hashTagText"],@"hash tag is not set in the tweet");
 }
 
 - (void)testTweetUrlsConfiguredCorrectly
@@ -95,6 +95,7 @@
                                          @"entities": @{
                                                  @"urls": @[
                                                          @{@"url" : @"http://www.google.com",
+                                                           @"display_url" : @"www.displayurl.com",
                                                            @"indices" : @[@19,@39]}]
                                                  }
                                          
@@ -110,7 +111,7 @@
     NSDictionary* urlAttributes =  [viewModel.tweetText attributesAtIndex:19 effectiveRange:&range];
     
     
-    XCTAssertTrue([urlAttributes[NSForegroundColorAttributeName] isEqual:[UIColor blueColor]],@"url is not set in the tweet");
+    XCTAssertTrue([urlAttributes[NSLinkAttributeName] isEqualToString:@"www.displayurl.com"],@"display url is not set in the tweet");
 }
 
 - (void)testTweetTextConfiguredCorrectly

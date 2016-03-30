@@ -10,6 +10,7 @@
 #import "CrowdmixTweetUser.h"
 #import "NSDateFormatter+Twitter.h"
 #import "CrowdmixTweetEntities.h"
+#import "CrowdmixTweetExtendedEntities.h"
 
 @implementation CrowdmixTweet
 
@@ -20,7 +21,8 @@
              @"text"      : @"text",
              @"tweetUser" : @"user",
              @"createdAt" : @"created_at",
-             @"entities" : @"entities"
+             @"entities" : @"entities",
+             @"extendedEntities" : @"extended_entities"
              
              };
 }
@@ -35,6 +37,12 @@
 + (NSValueTransformer *)entitiesJSONTransformer
 {
     return [MTLJSONAdapter dictionaryTransformerWithModelClass:[CrowdmixTweetEntities class]];
+}
+
+/* transforms the tweet extended entities dictionary into CrowdmixTweetEntities */
++ (NSValueTransformer *)extendedEntitiesJSONTransformer
+{
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:[CrowdmixTweetExtendedEntities class]];
 }
 
 @end

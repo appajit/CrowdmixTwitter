@@ -13,7 +13,9 @@
 /* mapping from json to object properties */
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
-             @"indices" : @"indices"
+             @"indices" : @"indices",
+             @"url" : @"url",
+             @"displayUrl" : @"display_url"
              };
 }
 

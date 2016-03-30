@@ -13,7 +13,8 @@
 /* hash tag items */
 @property (nonatomic,strong,readonly) NSArray *hashTags;
 
-/* urla */
+/* urls */
 @property (nonatomic,strong,readonly) NSArray *urls;
+
 
 @end

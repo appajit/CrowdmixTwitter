@@ -14,6 +14,8 @@
 #import "CrowdmixTweetEntities.h"
 #import "CrowdmixTweetHashTag.h"
 #import "CrowdmixTweetUrl.h"
+#import "CrowdmixTweetMedia.h"
+#import "CrowdmixTweetExtendedEntities.h"
 
 
 static NSUInteger const kRoundedCornerSize = 5;
@@ -31,8 +33,6 @@ static NSUInteger const kRoundedCornerSize = 5;
     /* apply hash tags to the tweet text by changing the hash tag text color in the tweet*/
     viewModel.tweetText     = [self tweetTextWithHashTagsAndUrlsIfAny:crowdmixTweet];
     
-    
-    
     viewModel.name          = crowdmixTweet.tweetUser.name;
     
     /* prepare the tweet age from the created date */
@@ -48,41 +48,64 @@ static NSUInteger const kRoundedCornerSize = 5;
 
 +(NSAttributedString*) tweetTextWithHashTagsAndUrlsIfAny:(CrowdmixTweet*) tweet
 {
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:tweet.text];
+    NSMutableAttributedString *tweetAttributedString = [[NSMutableAttributedString alloc] initWithString:tweet.text];
     
     for (CrowdmixTweetHashTag *hashTag in tweet.entities.hashTags)
     {
-        [self applyIndices:hashTag.indices toAttributedString:attributedString];
+        NSRange hashTagRange = [self rangeFromIndices:hashTag.indices];
+        
+        
+        if(hashTagRange.location != NSNotFound)
+        {
+            [tweetAttributedString addAttribute: NSLinkAttributeName
+                                     value:hashTag.text
+                                     range:hashTagRange];
+        }
     }
     
-    for (CrowdmixTweetHashTag *url in tweet.entities.urls)
+    for (CrowdmixTweetMedia *url in tweet.extendedEntities.mediaArray)
     {
-        [self applyIndices:url.indices toAttributedString:attributedString];
+        [self configureDisplayUrlForTweetUrl:url
+                               inTweetString:tweetAttributedString];
     }
-
-    return attributedString;
+    
+    for (CrowdmixTweetUrl *url in tweet.entities.urls)
+    {
+        
+        [self configureDisplayUrlForTweetUrl:url
+                               inTweetString:tweetAttributedString];
+    }
+    
+    return tweetAttributedString;
 }
 
-+(void) applyIndices:(NSArray*) indices
-  toAttributedString:(NSMutableAttributedString*) attributedString
++(void) configureDisplayUrlForTweetUrl:(CrowdmixTweetUrl*) tweetUrl
+                         inTweetString:(NSMutableAttributedString*) tweetAttributedString
 {
-    if(indices.count == 2 && attributedString)
+    NSRange urlRange = [self rangeFromIndices:tweetUrl.indices];
+    NSDictionary *displayUrlAttributes = @{NSLinkAttributeName:tweetUrl.displayUrl};
+    NSAttributedString *attributedDisplayUrl = [[NSAttributedString alloc] initWithString:tweetUrl.displayUrl
+                                                                               attributes:displayUrlAttributes];
+    [tweetAttributedString replaceCharactersInRange:urlRange
+                          withAttributedString:attributedDisplayUrl];
+}
+
++(NSRange) rangeFromIndices:(NSArray*) indices
+{
+    NSRange range;
+    if(indices.count == 2)
     {
         NSInteger indices0 = ((NSNumber*)indices[0]).integerValue;
         NSInteger indices1 = ((NSNumber*)indices[1]).integerValue;
         
         NSInteger location  = indices0;
         NSUInteger length   = indices1-indices0;
-        
-        NSRange range = NSMakeRange(location,length);
-        if (range.location != NSNotFound)
-        {
-            [attributedString addAttribute:NSForegroundColorAttributeName
-                                     value:[UIColor blueColor]
-                                     range:range];
-        }
+        range = NSMakeRange(location,length);
     }
+    
+    return range;
 }
+
 
 
 +(NSString*) tweetAgeFromDateString:(NSString*) dateString

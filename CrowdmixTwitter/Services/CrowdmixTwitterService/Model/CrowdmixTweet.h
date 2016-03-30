@@ -10,6 +10,7 @@
 
 @class CrowdmixTweetUser;
 @class CrowdmixTweetEntities;
+@class CrowdmixTweetExtendedEntities;
 
 @interface CrowdmixTweet : MTLModel <MTLJSONSerializing>
 
@@ -35,5 +36,7 @@
  *  tweet entities such as hash tags etc.
  */
 @property (nonatomic,strong,readonly) CrowdmixTweetEntities *entities;
+
+@property (nonatomic,strong,readonly) CrowdmixTweetExtendedEntities *extendedEntities;
 
 @end

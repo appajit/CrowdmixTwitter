@@ -13,5 +13,11 @@
 /* indices of url in the tweet text */
 @property (nonatomic,strong,readonly) NSArray *indices;
 
+/* indices of url in the tweet text */
+@property (nonatomic,copy,readonly) NSString *url;
+
+/* indices of url in the tweet text */
+@property (nonatomic,copy,readonly) NSString *displayUrl;
+
 
 @end
