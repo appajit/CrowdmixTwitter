@@ -65,6 +65,9 @@ static NSUInteger const kMaxTweets = 20;
      }];
 }
 
+/* As per TwitterKit documentation, TwitterKit APIs must be executed on main thread.However, the response can
+ be process on background thread.
+ */
 -(void) downloadHomeTimeLineWithCompletionBlock:(DownloadHomeTimelineCompletionBlock) completionBlock
 {
     

@@ -78,11 +78,15 @@ static NSUInteger const kRoundedCornerSize = 5;
                          inTweetString:(NSMutableAttributedString*) tweetAttributedString
 {
     NSRange urlRange = [self rangeFromIndices:tweetUrl.indices];
-    NSDictionary *displayUrlAttributes = @{NSLinkAttributeName:tweetUrl.displayUrl};
-    NSAttributedString *attributedDisplayUrl = [[NSAttributedString alloc] initWithString:tweetUrl.displayUrl
-                                                                               attributes:displayUrlAttributes];
-    [tweetAttributedString replaceCharactersInRange:urlRange
-                          withAttributedString:attributedDisplayUrl];
+    
+    if(urlRange.location != NSNotFound)
+    {
+        NSDictionary *displayUrlAttributes = @{NSLinkAttributeName:tweetUrl.displayUrl};
+        NSAttributedString *attributedDisplayUrl = [[NSAttributedString alloc] initWithString:tweetUrl.displayUrl
+                                                                                   attributes:displayUrlAttributes];
+        [tweetAttributedString replaceCharactersInRange:urlRange
+                              withAttributedString:attributedDisplayUrl];
+    }
 }
 
 //prepares the range from the indices
