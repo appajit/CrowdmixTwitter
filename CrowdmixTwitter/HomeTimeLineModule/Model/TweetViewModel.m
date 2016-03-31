@@ -56,8 +56,8 @@ static NSUInteger const kRoundedCornerSize = 5;
         if(hashTagRange.location != NSNotFound)
         {
             [tweetAttributedString addAttribute: NSLinkAttributeName
-                                     value:hashTag.text
-                                     range:hashTagRange];
+                                          value:hashTag.text
+                                          range:hashTagRange];
         }
     }
     
@@ -84,8 +84,12 @@ static NSUInteger const kRoundedCornerSize = 5;
         NSDictionary *displayUrlAttributes = @{NSLinkAttributeName:tweetUrl.displayUrl};
         NSAttributedString *attributedDisplayUrl = [[NSAttributedString alloc] initWithString:tweetUrl.displayUrl
                                                                                    attributes:displayUrlAttributes];
-        [tweetAttributedString replaceCharactersInRange:urlRange
-                              withAttributedString:attributedDisplayUrl];
+        
+        if((urlRange.location + urlRange.length) <= tweetAttributedString.length)
+        {
+            [tweetAttributedString replaceCharactersInRange:urlRange
+                                       withAttributedString:attributedDisplayUrl];
+        }
     }
 }
 
